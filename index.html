@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kerato</title>
+<meta name="description" content="Kerato, agence IA pour l'immobilier et la copropriété : un agent qui travaille à votre place, livré en 7 jours, à prix fixe, entièrement à distance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0F0522;--night2:#1C0838;--panel:#1A0B33;--panel2:#241046;--ink:#FFF4FA;--muted:#C9B8E6;--line:#3D2368;
+  --pink:#FF3D8B;--orange:#FF9A3D;--gold:#FFD23D;--teal:#19F0D4;--violet:#8B3DFF;
+  --sunset:linear-gradient(100deg,#FF3D8B 0%,#FF7A3D 55%,#FFC23D 100%);
+  --display:"Archivo Black","Arial Black",Impact,sans-serif;
+  --body:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(900px 500px at 85% -5%,rgba(255,61,139,.35),transparent 60%),radial-gradient(800px 500px at 0% 15%,rgba(139,61,255,.35),transparent 60%),linear-gradient(180deg,var(--night) 0%,var(--night2) 100%);background-attachment:fixed}
+a{color:var(--teal)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.mono{font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;font-size:12.5px}
+.hud{position:sticky;top:0;z-index:20;background:rgba(15,5,34,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hud .wrap{display:flex;align-items:center;gap:18px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-size:24px;letter-spacing:.02em;text-decoration:none;color:var(--ink)}
+.logo span{background:var(--sunset);-webkit-background-clip:text;background-clip:text;color:transparent}
+.xp{flex:1;min-width:200px;display:flex;align-items:center;gap:12px}
+.lvl{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--night);background:var(--gold);padding:3px 9px;border-radius:4px;white-space:nowrap}
+.track{flex:1;height:10px;background:var(--panel2);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--sunset);box-shadow:0 0 14px rgba(255,61,139,.8);transition:width .2s}
+.xpn{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+nav{display:flex;gap:18px;font-size:14.5px;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none}
+nav a:hover{color:var(--teal)}
+.hero{padding:70px 0 60px;display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:center}
+.eyebrow{display:inline-block;color:var(--teal);border:1px solid var(--teal);border-radius:99px;padding:4px 12px;margin-bottom:18px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(36px,6vw,66px);line-height:1.02;margin:0 0 20px;text-transform:uppercase;text-wrap:balance}
+h1 em{font-style:normal;background:var(--sunset);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(28px,4vw,42px);line-height:1.08;margin:0 0 14px;text-transform:uppercase;text-wrap:balance}
+h3{font-size:19px;margin:0 0 6px;font-weight:700}
+p{margin:0 0 14px}
+.lead{font-size:19px;color:var(--muted);max-width:58ch}
+.btn{display:inline-block;background:var(--sunset);color:#2B0A25;padding:15px 26px;border-radius:8px;font-weight:700;text-decoration:none;margin-top:8px;font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;font-size:14px;box-shadow:0 0 0 0 rgba(255,61,139,.6),0 8px 30px rgba(255,61,139,.35);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 4px rgba(255,61,139,.25),0 12px 36px rgba(255,61,139,.5)}
+.btn.ghost{background:transparent;color:var(--teal);border:1.5px solid var(--teal);box-shadow:none;margin-left:10px}
+.btn.ghost:hover{background:rgba(25,240,212,.1);box-shadow:none}
+.note{font-size:14px;color:var(--muted);margin-top:14px}
+.board{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 0 0 1px rgba(139,61,255,.25),0 20px 60px rgba(0,0,0,.45);position:relative;overflow:hidden}
+.board::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--sunset)}
+.board h3{color:var(--gold);margin-bottom:14px}
+.obj{list-style:none;margin:0;padding:0}
+.obj li{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line);cursor:pointer}
+.obj li:first-child{border-top:0}
+.chk{flex:0 0 26px;height:26px;border-radius:6px;border:2px solid var(--violet);display:flex;align-items:center;justify-content:center;font-weight:700;color:transparent;transition:.2s}
+.obj li.done .chk{background:var(--teal);border-color:var(--teal);color:var(--night);box-shadow:0 0 14px rgba(25,240,212,.6)}
+.obj b{display:block}
+.obj span{color:var(--muted);font-size:15px}
+.obj li.done b{color:var(--teal)}
+.reward{margin-top:14px;padding:10px 12px;border-radius:8px;background:rgba(255,210,61,.1);border:1px dashed var(--gold);color:var(--gold);font-family:var(--mono);font-size:13px;text-align:center}
+section{padding:64px 0;border-top:1px solid var(--line)}
+.kicker{color:var(--pink);display:block;margin-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:18px;margin-top:26px}
+.card{background:linear-gradient(170deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:6px;position:relative;transition:transform .2s,border-color .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--pink);box-shadow:0 14px 40px rgba(255,61,139,.25)}
+.card.main{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange) inset,0 0 36px rgba(255,154,61,.25)}
+.lv{font-family:var(--mono);font-weight:700;font-size:12.5px;color:var(--night);background:var(--teal);align-self:flex-start;padding:3px 9px;border-radius:4px;letter-spacing:.08em}
+.card.main .lv{background:var(--gold)}
+.price{font-family:var(--display);font-size:30px;margin:6px 0 2px;background:var(--sunset);-webkit-background-clip:text;background-clip:text;color:transparent}
+.price small{font-family:var(--body);font-size:14px;color:var(--muted);-webkit-text-fill-color:var(--muted)}
+.card ul{margin:8px 0 0;padding-left:0;list-style:none;color:var(--muted);font-size:15.5px}
+.card li{margin-bottom:6px;padding-left:22px;position:relative}
+.card li::before{content:"+";position:absolute;left:0;color:var(--teal);font-weight:700;font-family:var(--mono)}
+.steps{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:18px;position:relative}
+.steps li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;position:relative}
+.steps .n{font-family:var(--display);font-size:42px;line-height:1;background:var(--sunset);-webkit-background-clip:text;background-clip:text;color:transparent;display:block;margin-bottom:6px}
+.steps b{display:block;margin-bottom:4px}
+.steps span.t{color:var(--muted);font-size:15.5px}
+.tabs{display:flex;gap:10px;margin:22px 0 18px;flex-wrap:wrap}
+.tab{font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;background:var(--panel);color:var(--muted);border:1.5px solid var(--line);padding:10px 16px;border-radius:8px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--violet);color:#fff;border-color:var(--violet);box-shadow:0 0 22px rgba(139,61,255,.55)}
+.pane{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:26px}
+.pane[hidden]{display:none}
+.pane ul{margin:10px 0 0;padding-left:0;list-style:none}
+.pane li{padding-left:24px;position:relative;margin-bottom:8px;color:var(--muted)}
+.pane li::before{content:"▸";position:absolute;left:0;color:var(--pink)}
+.cc{border-radius:16px;padding:36px;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;background:linear-gradient(120deg,#3A0E5E 0%,#7A1D6B 50%,#C2336A 100%);border:1px solid rgba(255,255,255,.18);box-shadow:0 20px 60px rgba(255,61,139,.25)}
+.cc p{color:#FFE6F3}
+.cc .btn{background:var(--ink);color:#2B0A25;box-shadow:none}
+dl{margin:22px 0 0}
+dt{font-weight:700;margin-top:18px;color:var(--gold)}
+dd{margin:4px 0 0;color:var(--muted);max-width:70ch}
+#diagnostic .box{border:1px solid var(--teal);border-radius:16px;padding:32px;background:rgba(25,240,212,.05);box-shadow:0 0 40px rgba(25,240,212,.12)}
+footer{border-top:1px solid var(--line);padding:32px 0 56px;color:var(--muted);font-size:14.5px}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.toast{position:fixed;right:18px;bottom:18px;z-index:30;background:var(--gold);color:var(--night);font-family:var(--mono);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.06em;padding:12px 16px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.5);transform:translateY(140%);transition:transform .35s}
+.toast.show{transform:none}
+@media (max-width:860px){
+  .hero,.cc{grid-template-columns:1fr}
+  .hero{padding-top:40px}
+  .btn.ghost{margin-left:0;margin-top:10px}
+  nav{display:none}
+  section{padding:48px 0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hud">
+  <div class="wrap">
+    <a class="logo" href="#top">Kerato<span>.</span></a>
+    <div class="xp" aria-hidden="true">
+      <span class="lvl" id="lvl">NIV. 1</span>
+      <div class="track"><div class="fill" id="fill"></div></div>
+      <span class="xpn" id="xpn">0 XP</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="#offres">Niveaux</a>
+      <a href="#methode">Méthode</a>
+      <a href="#cas">Cas d'usage</a>
+      <a href="#courrier-clair">Courrier Clair</a>
+      <a href="#questions">Questions</a>
+    </nav>
+  </div>
+</header>
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <span class="eyebrow mono">Agence IA · immobilier &amp; copropriété</span>
+      <h1>Un agent IA qui joue <em>à votre place</em>. Livré en 7 jours.</h1>
+      <p class="lead">Kerato repère la tâche répétitive qui vous coûte le plus de temps, puis la confie à un agent branché sur vos outils. À prix fixe, entièrement à distance, par écrit.</p>
+      <a class="btn" href="#diagnostic">Lancer mon diagnostic gratuit</a>
+      <a class="btn ghost" href="#offres">Voir les niveaux</a>
+      <p class="note">Aucun engagement. Le diagnostic vous est remis même si nous ne travaillons pas ensemble.</p>
+    </div>
+    <aside class="board" aria-label="Missions d'un agent">
+      <h3 class="mono">Mission en cours</h3>
+      <ul class="obj" id="obj">
+        <li tabindex="0" role="button" aria-pressed="false"><span class="chk">✓</span><div><b>Trier le courrier entrant</b><span>Chaque message est classé, résumé et rattaché à son dossier.</span></div></li>
+        <li tabindex="0" role="button" aria-pressed="false"><span class="chk">✓</span><div><b>Lire les relevés de charges</b><span>Les lignes inhabituelles sont repérées et listées.</span></div></li>
+        <li tabindex="0" role="button" aria-pressed="false"><span class="chk">✓</span><div><b>Préparer les réponses types</b><span>Un brouillon est prêt pour chaque demande, vous validez.</span></div></li>
+      </ul>
+      <div class="reward" id="reward">Cochez les objectifs : chacun vous fait gagner du temps</div>
+    </aside>
+  </div>
+  <section id="offres">
+    <div class="wrap">
+      <span class="kicker mono">Sélection du niveau</span>
+      <h2>Quatre niveaux, un périmètre écrit avant de commencer</h2>
+      <p class="lead">Vous connaissez le prix et ce qui est livré avant de dire oui. Les tarifs s'entendent hors taxes.</p>
+      <div class="grid">
+        <article class="card">
+          <span class="lv">NIV. 1</span>
+          <h3>Diagnostic</h3>
+          <div class="price">Gratuit</div>
+          <p>Dix questions en ligne sur vos tâches, vos outils et vos volumes.</p>
+          <ul><li>Rapport d'une page</li><li>Les trois automatisations les plus rentables</li><li>Réponse sous 48 heures ouvrées</li></ul>
+        </article>
+        <article class="card main">
+          <span class="lv">NIV. 2 · LE PLUS JOUÉ</span>
+          <h3>Un agent en 7 jours</h3>
+          <div class="price">dès 690 € <small>HT, forfait</small></div>
+          <p>Un seul processus automatisé, de bout en bout.</p>
+          <ul><li>Périmètre signé avant le départ</li><li>Une série de retouches comprise</li><li>Documentation remise</li></ul>
+        </article>
+        <article class="card">
+          <span class="lv">NIV. 3 · IMMOBILIER</span>
+          <h3>Pack syndic et copropriété</h3>
+          <div class="price">dès 1 490 € <small>HT, forfait</small></div>
+          <p>Trois automatisations liées, prêtes à l'emploi.</p>
+          <ul><li>Tri des messages entrants</li><li>Lecture des relevés de charges</li><li>Réponses aux copropriétaires</li></ul>
+        </article>
+        <article class="card">
+          <span class="lv">BONUS</span>
+          <h3>Suivi et évolutions</h3>
+          <div class="price">190 € <small>HT par mois</small></div>
+          <p>Votre agent reste à jour quand vos outils changent.</p>
+          <ul><li>Corrections et petits ajouts</li><li>Compte rendu écrit chaque mois</li><li>Sans durée minimale</li></ul>
+        </article>
+      </div>
+      <p class="note">La consommation d'IA de votre agent est refacturée au coût réel, sans marge.</p>
+    </div>
+  </section>
+  <section id="methode">
+    <div class="wrap">
+      <span class="kicker mono">Parcours</span>
+      <h2>Une méthode légère, entièrement à distance</h2>
+      <p class="lead">Pas de déplacement, pas d'atelier, peu de réunions. Vous gardez la main sur chaque étape par écrit.</p>
+      <ol class="steps">
+        <li><span class="n">01</span><b>Diagnostic</b><span class="t">Vous remplissez le questionnaire. Nous vous renvoyons un rapport d'une page.</span></li>
+        <li><span class="n">02</span><b>Cadrage</b><span class="t">Le périmètre, le prix et le délai sont écrits et validés par vous.</span></li>
+        <li><span class="n">03</span><b>Livraison en 7 jours</b><span class="t">L'agent est branché sur vos outils et testé sur vos cas réels.</span></li>
+        <li><span class="n">04</span><b>Suivi</b><span class="t">Un compte rendu écrit, des retouches, et les évolutions si vous le souhaitez.</span></li>
+      </ol>
+    </div>
+  </section>
+  <section id="cas">
+    <div class="wrap">
+      <span class="kicker mono">Choisissez votre terrain</span>
+      <h2>Deux terrains de jeu</h2>
+      <div class="tabs" role="tablist" aria-label="Cas d'usage">
+        <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">Syndics et gestionnaires</button>
+        <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false">Organismes de formation</button>
+      </div>
+      <div class="pane" id="p1" role="tabpanel" aria-labelledby="t1">
+        <p>Les mêmes demandes reviennent chaque semaine : une question sur un appel de fonds, un relevé à comprendre, une pièce à retrouver. Un agent lit, classe et prépare la réponse. Vous relisez et envoyez.</p>
+        <ul>
+          <li>Tri et résumé des messages entrants</li>
+          <li>Détection des anomalies dans les relevés de charges</li>
+          <li>Brouillons de réponse aux copropriétaires</li>
+        </ul>
+      </div>
+      <div class="pane" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+        <p>Entre les convocations, les émargements et les comptes rendus, l'administratif prend plus de temps que la formation. Un agent prépare les documents et relance à votre place.</p>
+        <ul>
+          <li>Comptes rendus de séance rédigés à partir de vos notes</li>
+          <li>Relances et suivi des documents manquants</li>
+          <li>Préparation des pièces de facturation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section id="courrier-clair">
+    <div class="wrap">
+      <div class="cc">
+        <div>
+          <span class="kicker mono" style="color:var(--gold)">Mode histoire</span>
+          <h2>Courrier Clair, une création Kerato</h2>
+          <p>Un relevé de charges, un courrier de la caisse, une lettre du syndic : beaucoup de personnes âgées ne savent pas ce qu'on leur demande. Courrier Clair explique chaque papier en mots simples et dit quoi faire ensuite.</p>
+          <p>Pour les syndics, une version sera proposée pour que les courriers adressés aux copropriétaires âgés soient compris dès la première lecture.</p>
+        </div>
+        <div>
+          <a class="btn" href="https://courrier-clair.pages.dev">Découvrir Courrier Clair</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="diagnostic">
+    <div class="wrap">
+      <div class="box">
+        <span class="kicker mono" style="color:var(--teal)">Niveau 1 · gratuit</span>
+        <h2>Le diagnostic gratuit</h2>
+        <p class="lead">Dix questions, cinq minutes. Vous décrivez vos tâches répétitives et les outils que vous utilisez. Vous recevez en retour un rapport d'une page avec les trois automatisations qui vous feraient gagner le plus de temps.</p>
+        <a class="btn" href="#diagnostic">Commencer le diagnostic</a>
+        <p class="note">Vos réponses ne servent qu'à établir le rapport et ne sont pas transmises à des tiers.</p>
+      </div>
+    </div>
+  </section>
+  <section id="questions">
+    <div class="wrap">
+      <span class="kicker mono">Aide</span>
+      <h2>Questions fréquentes</h2>
+      <dl>
+        <dt>Dois-je me déplacer ou organiser des réunions ?</dt>
+        <dd>Non. Tout se passe à distance, par écrit, avec une visioconférence seulement si vous la demandez.</dd>
+        <dt>Que devient mon prix si le projet grossit ?</dt>
+        <dd>Le prix est fixé avec le périmètre. Si vous ajoutez une tâche, un nouveau forfait est proposé avant tout travail supplémentaire.</dd>
+        <dt>Où vont mes données ?</dt>
+        <dd>Kerato n'accède qu'aux documents nécessaires à la mission. Un accord de traitement des données est signé avant le début, et les accès vous sont rendus à la fin.</dd>
+        <dt>Qui valide ce que l'agent produit ?</dt>
+        <dd>Vous. L'agent prépare, vous validez. Chaque livrable est relu avant de vous être remis.</dd>
+        <dt>Pourquoi un prix aussi clair ?</dt>
+        <dd>Parce qu'une automatisation simple n'a pas besoin d'un devis de plusieurs semaines. Vous savez ce que vous payez, et ce que vous recevez.</dd>
+      </dl>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap foot">
+    <div><strong>Kerato</strong>, une marque de Lacharme Capital (SASU), Paris.</div>
+    <div>Mentions légales à venir. Conditions générales remises avec chaque devis.</div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var fill=document.getElementById('fill'),lvl=document.getElementById('lvl'),xpn=document.getElementById('xpn'),toast=document.getElementById('toast');
+  var names=['NIV. 1','NIV. 2','NIV. 3','NIV. 4'],last=0,tt;
+  function say(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2200)}
+  function onScroll(){
+    var h=document.documentElement,max=h.scrollHeight-h.clientHeight,p=max>0?Math.min(1,h.scrollTop/max):0;
+    fill.style.width=(p*100)+'%';
+    xpn.textContent=Math.round(p*1000)+' XP';
+    var l=p<.25?0:p<.5?1:p<.8?2:3;
+    lvl.textContent=names[l];
+    if(l>last){say('Niveau '+(l+1)+' atteint');}
+    last=l;
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var items=document.querySelectorAll('#obj li'),reward=document.getElementById('reward');
+  var texts=['Cochez les objectifs : chacun vous fait gagner du temps','1 tâche sur 3 déléguée','2 tâches sur 3 déléguées','Mission accomplie : votre agent fait le travail, vous validez'];
+  function toggle(li){
+    li.classList.toggle('done');
+    li.setAttribute('aria-pressed',li.classList.contains('done'));
+    var n=document.querySelectorAll('#obj li.done').length;
+    reward.textContent=texts[n];
+    if(n===3)say('Mission accomplie');
+  }
+  items.forEach(function(li){
+    li.addEventListener('click',function(){toggle(li)});
+    li.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(li)}});
+  });
+  var tabs=document.querySelectorAll('.tab');
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    tabs.forEach(function(o){var on=o===t;o.setAttribute('aria-selected',on);document.getElementById(o.getAttribute('aria-controls')).hidden=!on});
+  })});
+})();
+</script>
+</body>
+</html>
