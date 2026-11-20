@@ -7,351 +7,387 @@
 <meta name="description" content="Kerato, agence IA pour l'immobilier et la copropriété : vous envoyez vos documents, nous vous renvoyons des synthèses et des brouillons prêts à valider. Prix fixe, entièrement à distance.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --night:#0F0522;--night2:#1C0838;--panel:#1A0B33;--panel2:#241046;--ink:#FFF4FA;--muted:#C9B8E6;--line:#3D2368;
-  --pink:#FF3D8B;--orange:#FF9A3D;--gold:#FFD23D;--teal:#19F0D4;--violet:#8B3DFF;
-  --sunset:linear-gradient(100deg,#FF3D8B 0%,#FF7A3D 55%,#FFC23D 100%);
-  --display:"Archivo Black","Arial Black",Impact,sans-serif;
-  --body:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
-  color-scheme: dark;
+--bg:#0A0A0A;--bg2:#111;--panel:#141414;--panel2:#1A1A1A;--ink:#F5F3EE;--muted:#A3A3A3;--line:#2A2A2A;
+--accent:#FF7A4D;--accent-ink:#0A0A0A;--btn:#F5F3EE;--btn-ink:#0A0A0A;--ok:#F5F3EE;
+--serif:"Fraunces","Cormorant Garamond",Georgia,"Times New Roman",serif;
+--body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+color-scheme: dark;
 }
+.light{--bg:#F4F2EE;--bg2:#ECE9E3;--panel:#FFFFFF;--panel2:#FAF9F6;--ink:#0A0A0A;--muted:#5C5C5C;--line:#DEDAD2;--accent:#D4501F;--accent-ink:#FFFFFF;--btn:#0A0A0A;--btn-ink:#F5F3EE;--ok:#0A0A0A;color-scheme:light}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
-  background:radial-gradient(900px 500px at 85% -5%,rgba(255,61,139,.35),transparent 60%),radial-gradient(800px 500px at 0% 15%,rgba(139,61,255,.35),transparent 60%),linear-gradient(180deg,var(--night) 0%,var(--night2) 100%);background-attachment:fixed}
-a{color:var(--teal)}
-a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-.mono{font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;font-size:12.5px}
-.hud{position:sticky;top:0;z-index:20;background:rgba(15,5,34,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.hud .wrap{display:flex;align-items:center;gap:18px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
-.logo{font-family:var(--display);font-size:24px;letter-spacing:.02em;text-decoration:none;color:var(--ink)}
-.logo span{background:var(--sunset);-webkit-background-clip:text;background-clip:text;color:transparent}
-.xp{flex:1;min-width:200px;display:flex;align-items:center;gap:12px}
-.lvl{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--night);background:var(--gold);padding:3px 9px;border-radius:4px;white-space:nowrap}
-.track{flex:1;height:10px;background:var(--panel2);border:1px solid var(--line);border-radius:99px;overflow:hidden}
-.fill{height:100%;width:0;background:var(--sunset);box-shadow:0 0 14px rgba(255,61,139,.8);transition:width .2s}
-.xpn{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
-nav{display:flex;gap:18px;font-size:14.5px;flex-wrap:wrap}
+body{margin:0;background:#0A0A0A;color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,[role=button]:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.mono{font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase;font-size:11.5px;font-weight:500}
+.hud{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hud .wrap{display:flex;align-items:center;gap:22px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
+.logo{font-family:var(--serif);font-size:25px;font-weight:500;letter-spacing:.01em;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--accent)}
+.xp{flex:1;min-width:180px;display:flex;align-items:center;gap:12px}
+.lvl{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.12em;color:var(--ink);border:1px solid var(--muted);padding:2px 9px;border-radius:99px;white-space:nowrap}
+.track{flex:1;height:3px;background:var(--line);border-radius:99px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);transition:width .2s}
+.xpn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);white-space:nowrap}
+nav{display:flex;gap:22px;font-size:14px;flex-wrap:wrap}
 nav a{color:var(--muted);text-decoration:none}
-nav a:hover{color:var(--teal)}
-.hero{padding:70px 0 60px;display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:center}
-.eyebrow{display:inline-block;color:var(--teal);border:1px solid var(--teal);border-radius:99px;padding:4px 12px;margin-bottom:18px}
-h1{font-family:var(--display);font-weight:400;font-size:clamp(36px,6vw,66px);line-height:1.02;margin:0 0 20px;text-transform:uppercase;text-wrap:balance}
-h1 em{font-style:normal;background:var(--sunset);-webkit-background-clip:text;background-clip:text;color:transparent}
-h2{font-family:var(--display);font-weight:400;font-size:clamp(28px,4vw,42px);line-height:1.08;margin:0 0 14px;text-transform:uppercase;text-wrap:balance}
-h3{font-size:19px;margin:0 0 6px;font-weight:700}
+nav a:hover{color:var(--ink)}
+.hero{padding-top:84px;padding-bottom:72px;display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center}
+.eyebrow{display:inline-block;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:5px 14px;margin-bottom:22px}
+h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:clamp(36px,5.6vw,62px);line-height:1.06;margin:0 0 22px}
+h1 em,h2 em{font-style:italic;color:var(--accent)}
+h2{font-size:clamp(28px,3.8vw,40px);line-height:1.12;margin:0 0 14px}
+h3{font-size:18px;margin:0 0 6px;font-weight:600}
 p{margin:0 0 14px}
-.lead{font-size:19px;color:var(--muted);max-width:58ch}
-.btn{display:inline-block;background:var(--sunset);color:#2B0A25;padding:15px 26px;border-radius:8px;font-weight:700;text-decoration:none;margin-top:8px;font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;font-size:14px;box-shadow:0 0 0 0 rgba(255,61,139,.6),0 8px 30px rgba(255,61,139,.35);transition:transform .15s,box-shadow .15s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 4px rgba(255,61,139,.25),0 12px 36px rgba(255,61,139,.5)}
-.btn.ghost{background:transparent;color:var(--teal);border:1.5px solid var(--teal);box-shadow:none;margin-left:10px}
-.btn.ghost:hover{background:rgba(25,240,212,.1);box-shadow:none}
+.lead{font-size:18px;color:var(--muted);max-width:60ch}
+.btn{display:inline-block;background:var(--btn);color:var(--btn-ink);padding:10px 22px;border-radius:99px;font-weight:600;font-size:14.5px;text-decoration:none;margin-top:8px;font-family:var(--body);transition:opacity .15s,transform .15s}
+.btn:hover{opacity:.9;transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--muted);margin-left:8px}
+.btn.ghost:hover{border-color:var(--accent);opacity:1}
+.btn.ghost::after{content:" →"}
 .note{font-size:14px;color:var(--muted);margin-top:14px}
-.board{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 0 0 1px rgba(139,61,255,.25),0 20px 60px rgba(0,0,0,.45);position:relative;overflow:hidden}
-.board::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--sunset)}
-.board h3{color:var(--gold);margin-bottom:14px}
+.board{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;position:relative}
+.board h3{color:var(--ink);margin-bottom:12px}
 .obj{list-style:none;margin:0;padding:0}
-.obj li{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line);cursor:pointer}
+.obj li{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line);cursor:pointer}
 .obj li:first-child{border-top:0}
-.chk{flex:0 0 26px;height:26px;border-radius:6px;border:2px solid var(--violet);display:flex;align-items:center;justify-content:center;font-weight:700;color:transparent;transition:.2s}
-.obj li.done .chk{background:var(--teal);border-color:var(--teal);color:var(--night);box-shadow:0 0 14px rgba(25,240,212,.6)}
-.obj b{display:block}
+.chk{flex:0 0 24px;height:24px;border-radius:99px;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent;transition:.2s;margin-top:2px}
+.obj li:hover .chk{border-color:var(--accent)}
+.obj li.done .chk{background:var(--accent);border-color:var(--accent);color:#0A0A0A}
+.obj b{display:block;font-weight:600}
 .obj li span:not(.chk){color:var(--muted);font-size:15px}
-.obj li.done b{color:var(--teal)}
-.reward{margin-top:14px;padding:10px 12px;border-radius:8px;background:rgba(255,210,61,.1);border:1px dashed var(--gold);color:var(--gold);font-family:var(--mono);font-size:13px;text-align:center}
-section{padding:64px 0;border-top:1px solid var(--line)}
-.kicker{color:var(--pink);display:block;margin-bottom:8px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:18px;margin-top:26px}
-.card{background:linear-gradient(170deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:6px;position:relative;transition:transform .2s,border-color .2s,box-shadow .2s}
-.card:hover{transform:translateY(-4px);border-color:var(--pink);box-shadow:0 14px 40px rgba(255,61,139,.25)}
-.card.main{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange) inset,0 0 36px rgba(255,154,61,.25)}
-.lv{font-family:var(--mono);font-weight:700;font-size:12.5px;color:var(--night);background:var(--teal);align-self:flex-start;padding:3px 9px;border-radius:4px;letter-spacing:.08em}
-.card.main .lv{background:var(--gold)}
-.price{font-family:var(--display);font-size:30px;margin:6px 0 2px;background:var(--sunset);-webkit-background-clip:text;background-clip:text;color:transparent}
-.price small{font-family:var(--body);font-size:14px;color:var(--muted);-webkit-text-fill-color:var(--muted)}
+.obj li.done b{color:var(--accent)}
+.reward{margin-top:14px;padding:10px 12px;border-radius:10px;background:transparent;border:1px dashed var(--muted);color:var(--ink);font-size:13.5px;text-align:center}
+section{padding:78px 0;border-top:1px solid var(--line);background:var(--bg);color:var(--ink)}
+section.light{background:var(--bg);border-top-color:var(--line)}
+.kicker{color:var(--accent);display:block;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:18px;margin-top:30px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:6px;position:relative;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);border-color:var(--ink)}
+.card.main{border-color:var(--ink)}
+.lv{font-family:var(--mono);font-weight:500;font-size:11px;color:var(--ink);border:1px solid var(--muted);align-self:flex-start;padding:2px 10px;border-radius:99px;letter-spacing:.12em;text-transform:uppercase}
+.card.main .lv{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.price{font-family:var(--serif);font-size:30px;margin:8px 0 2px;color:var(--ink)}
+.price small{font-family:var(--body);font-size:14px;color:var(--muted)}
 .card ul{margin:8px 0 0;padding-left:0;list-style:none;color:var(--muted);font-size:15.5px}
-.card li{margin-bottom:6px;padding-left:22px;position:relative}
-.card li::before{content:"+";position:absolute;left:0;color:var(--teal);font-weight:700;font-family:var(--mono)}
-.steps{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:18px;position:relative}
-.steps li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;position:relative}
-.steps .n{font-family:var(--display);font-size:42px;line-height:1;background:var(--sunset);-webkit-background-clip:text;background-clip:text;color:transparent;display:block;margin-bottom:6px}
-.steps b{display:block;margin-bottom:4px}
+.card li{margin-bottom:6px;padding-left:20px;position:relative}
+.card li::before{content:"";position:absolute;left:2px;top:.75em;width:7px;height:1px;background:var(--accent)}
+.steps{list-style:none;margin:30px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:18px}
+.steps li{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+.steps .n{font-family:var(--serif);font-style:italic;font-size:40px;line-height:1;color:var(--accent);display:block;margin-bottom:8px}
+.steps b{display:block;margin-bottom:4px;font-weight:600}
 .steps span.t{color:var(--muted);font-size:15.5px}
-.tabs{display:flex;gap:10px;margin:22px 0 18px;flex-wrap:wrap}
-.tab{font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;background:var(--panel);color:var(--muted);border:1.5px solid var(--line);padding:10px 16px;border-radius:8px;cursor:pointer}
-.tab[aria-selected="true"]{background:var(--violet);color:#fff;border-color:var(--violet);box-shadow:0 0 22px rgba(139,61,255,.55)}
-.pane{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:26px}
+.tabs{display:flex;gap:8px;margin:24px 0 18px;flex-wrap:wrap}
+.tab{font-family:var(--body);font-size:14px;font-weight:600;background:transparent;color:var(--muted);border:1px solid var(--line);padding:9px 18px;border-radius:99px;cursor:pointer}
+.tab:hover{border-color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pane{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px}
 .pane[hidden]{display:none}
 .pane ul{margin:10px 0 0;padding-left:0;list-style:none}
-.pane li{padding-left:24px;position:relative;margin-bottom:8px;color:var(--muted)}
-.pane li::before{content:"▸";position:absolute;left:0;color:var(--pink)}
-.cc{border-radius:16px;padding:36px;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;background:linear-gradient(120deg,#3A0E5E 0%,#7A1D6B 50%,#C2336A 100%);border:1px solid rgba(255,255,255,.18);box-shadow:0 20px 60px rgba(255,61,139,.25)}
-.cc p{color:#FFE6F3}
-.cc .btn{background:var(--ink);color:#2B0A25;box-shadow:none}
-dl{margin:22px 0 0}
-dt{font-weight:700;margin-top:18px;color:var(--gold)}
+.pane li{padding-left:22px;position:relative;margin-bottom:8px;color:var(--muted)}
+.pane li::before{content:"→";position:absolute;left:0;color:var(--accent)}
+.cc{border-radius:20px;padding:40px;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;background:#F4F2EE;color:#0A0A0A}
+.cc p{color:#444}
+.cc h2 em,.cc .kicker{color:#D4501F}
+.cc .btn{background:#0A0A0A;color:#F5F3EE}
+dl{margin:24px 0 0}
+dt{font-weight:600;margin-top:20px;color:var(--ink);font-family:var(--serif);font-size:19px}
 dd{margin:4px 0 0;color:var(--muted);max-width:70ch}
-#diagnostic .box{border:1px solid var(--teal);border-radius:16px;padding:32px;background:rgba(25,240,212,.05);box-shadow:0 0 40px rgba(25,240,212,.12)}
-footer{border-top:1px solid var(--line);padding:32px 0 56px;color:var(--muted);font-size:14.5px}
-.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.toast{position:fixed;right:18px;bottom:18px;z-index:30;background:var(--gold);color:var(--night);font-family:var(--mono);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.06em;padding:12px 16px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.5);transform:translateY(140%);transition:transform .35s}
+.box{border:1px solid var(--line);border-radius:18px;padding:34px;background:var(--panel)}
+.proof{margin-top:30px;border:1px solid var(--line);border-radius:18px;padding:28px;background:var(--panel)}
+.proof ul{list-style:none;padding:0;margin:10px 0 0;color:var(--muted)}
+.proof li{padding:11px 0;border-top:1px solid var(--line)}
+.proof li b{color:var(--ink)}
+.proof li b.ok{color:var(--muted)}
+footer{background:#000;border-top:1px solid var(--line);padding:56px 0 34px;color:var(--muted);font-size:14.5px}
+.fcols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.fcols h4{margin:0 0 12px;color:var(--ink);font-size:14px;font-weight:600}
+.fcols a{display:block;color:var(--muted);text-decoration:none;margin-bottom:8px}
+.fcols a:hover{color:var(--ink)}
+.fbrand{font-family:var(--serif);font-size:24px;color:var(--ink);margin-bottom:8px}
+.fbrand span{color:var(--accent)}
+.fbase{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px}
+.toast{position:fixed;right:18px;bottom:18px;z-index:30;background:var(--ink);color:#0A0A0A;font-size:13.5px;font-weight:600;padding:10px 16px;border-radius:99px;box-shadow:0 10px 30px rgba(0,0,0,.4);transform:translateY(140%);transition:transform .35s}
 .toast.show{transform:none}
 @media (max-width:860px){
-  .hero,.cc{grid-template-columns:1fr}
-  .hero{padding-top:40px}
-  .btn.ghost{margin-left:0;margin-top:10px}
-  nav{display:none}
-  section{padding:48px 0}
+.hero,.cc,.fcols{grid-template-columns:1fr}
+.hero{padding-top:44px;padding-bottom:48px;gap:36px}
+.btn.ghost{margin-left:0;margin-top:10px}
+nav{display:none}
+section{padding:56px 0}
+.cc{padding:28px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
 <body>
 <header class="hud">
-  <div class="wrap">
-    <a class="logo" href="#top">Kerato<span>.</span></a>
-    <div class="xp" aria-hidden="true">
-      <span class="lvl" id="lvl">NIV. 1</span>
-      <div class="track"><div class="fill" id="fill"></div></div>
-      <span class="xpn" id="xpn">0 XP</span>
-    </div>
-    <nav aria-label="Navigation principale">
-      <a href="#offres">Niveaux</a>
-      <a href="#missions">Missions</a>
-      <a href="#methode">Méthode</a>
-      <a href="#cas">Cas d'usage</a>
-      <a href="#courrier-clair">Courrier Clair</a>
-      <a href="#questions">Questions</a>
-    </nav>
-  </div>
+<div class="wrap">
+<a class="logo" href="#top">Kerato<span>.</span></a>
+<div class="xp" aria-hidden="true">
+<span class="lvl" id="lvl">NIV. 1</span>
+<div class="track"><div class="fill" id="fill"></div></div>
+<span class="xpn" id="xpn">0 XP</span>
+</div>
+<nav aria-label="Navigation principale">
+<a href="#offres">Niveaux</a>
+<a href="#missions">Missions</a>
+<a href="#methode">Méthode</a>
+<a href="#cas">Cas d'usage</a>
+<a href="#courrier-clair">Courrier Clair</a>
+<a href="#questions">Questions</a>
+</nav>
+</div>
 </header>
 <main id="top">
-  <div class="wrap hero">
-    <div>
-      <span class="eyebrow mono">Agence IA · immobilier &amp; copropriété</span>
-      <h1>Envoyez vos documents. <em>Recevez le travail fait.</em></h1>
-      <p class="lead">Kerato traite à votre place les tâches répétitives de l'immobilier et de la copropriété. Vous nous transmettez vos documents, nous vous renvoyons des synthèses et des brouillons prêts à valider. Rien à installer, aucun accès à votre ordinateur.</p>
-      <a class="btn" href="https://tally.so/r/X5opBz">Lancer mon diagnostic gratuit</a>
-      <a class="btn ghost" href="#offres">Voir les niveaux</a>
-      <p class="note">Aucun engagement. Le diagnostic vous est remis même si nous ne travaillons pas ensemble.</p>
-    </div>
-    <aside class="board" aria-label="Exemples de missions">
-      <h3 class="mono">Mission en cours</h3>
-      <ul class="obj" id="obj">
-        <li tabindex="0" role="button" aria-pressed="false"><span class="chk">✓</span><div><b>Trier le courrier entrant</b><span>Chaque message est classé, résumé et rattaché à son dossier.</span></div></li>
-        <li tabindex="0" role="button" aria-pressed="false"><span class="chk">✓</span><div><b>Lire les relevés de charges</b><span>Les lignes inhabituelles sont repérées et listées.</span></div></li>
-        <li tabindex="0" role="button" aria-pressed="false"><span class="chk">✓</span><div><b>Préparer les réponses types</b><span>Un brouillon est prêt pour chaque demande, vous validez.</span></div></li>
-      </ul>
-      <div class="reward" id="reward">Cochez les objectifs : chacun vous fait gagner du temps</div>
-    </aside>
-  </div>
-  <section id="offres">
-    <div class="wrap">
-      <span class="kicker mono">Sélection du niveau</span>
-      <h2>Quatre niveaux, un périmètre écrit avant de commencer</h2>
-      <p class="lead">Vous connaissez le prix et ce qui est livré avant de dire oui. Les tarifs s'entendent hors taxes.</p>
-      <div class="grid">
-        <article class="card">
-          <span class="lv">NIV. 1</span>
-          <h3>Diagnostic</h3>
-          <div class="price">Gratuit</div>
-          <p>Dix questions en ligne sur vos tâches, vos outils et vos volumes.</p>
-          <ul><li>Rapport d'une page</li><li>Les trois tâches à déléguer en priorité</li><li>Réponse sous 48 heures ouvrées</li></ul>
-        </article>
-        <article class="card main">
-          <span class="lv">NIV. 2 · LE PLUS JOUÉ</span>
-          <h3>Une mission au choix</h3>
-          <div class="price">dès 690 € <small>HT, forfait</small></div>
-          <p>Une mission nommée, traitée de bout en bout : vous envoyez, nous renvoyons.</p>
-          <ul><li>Livrable remis sous 7 jours ouvrés</li><li>Une série de retouches comprise</li><li>Modèle de livrable réutilisable</li></ul>
-        </article>
-        <article class="card">
-          <span class="lv">NIV. 3 · IMMOBILIER</span>
-          <h3>Pack syndic et copropriété</h3>
-          <div class="price">dès 1 490 € <small>HT, forfait</small></div>
-          <p>Trois traitements liés, livrés ensemble.</p>
-          <ul><li>Tri des messages entrants</li><li>Lecture des relevés de charges</li><li>Réponses aux copropriétaires</li></ul>
-        </article>
-        <article class="card">
-          <span class="lv">BONUS</span>
-          <h3>Suivi mensuel</h3>
-          <div class="price">190 € <small>HT par mois</small></div>
-          <p>Vos envois réguliers continuent d'être traités chaque mois, dans le volume convenu.</p>
-          <ul><li>Traitement de vos envois du mois</li><li>Compte rendu écrit chaque mois</li><li>Sans durée minimale</li></ul>
-        </article>
-      </div>
-      <p class="note">Au-delà du volume convenu, la consommation d'IA est refacturée au coût réel, sans marge.</p>
-    </div>
-  </section>
-  <section id="missions">
-    <div class="wrap">
-      <span class="kicker mono">Les missions</span>
-      <h2>Trois missions, un résultat que vous pouvez lire</h2>
-      <p class="lead">Chaque mission a un nom, un livrable précis et un avant/après. Vous envoyez vos documents, vous recevez un résultat prêt à utiliser.</p>
-      <div class="grid">
-        <article class="card">
-          <span class="lv">MISSION A</span>
-          <h3>Le Contrôle des charges</h3>
-          <p><b>Avant :</b> un relevé de 20 pages que personne ne lit en détail.<br><b>Après :</b> la liste des lignes à questionner, avec les montants et la question à poser au syndic.</p>
-          <ul><li>Écarts avec le budget voté</li><li>Honoraires hors forfait repérés</li><li>Brouillon de courrier au syndic</li></ul>
-        </article>
-        <article class="card">
-          <span class="lv">MISSION B</span>
-          <h3>Le Tri du lundi</h3>
-          <p><b>Avant :</b> cinquante messages en retard, dont trois urgents noyés dedans.<br><b>Après :</b> un récapitulatif classé par urgence, avec l'action à faire pour chacun.</p>
-          <ul><li>Messages résumés en une ligne</li><li>Urgences en tête de liste</li><li>Rattachement au bon dossier</li></ul>
-        </article>
-        <article class="card">
-          <span class="lv">MISSION C</span>
-          <h3>Les Réponses prêtes</h3>
-          <p><b>Avant :</b> la même question d'un copropriétaire, réécrite pour la dixième fois.<br><b>Après :</b> un brouillon clair et poli pour chaque demande. Vous relisez et envoyez.</p>
-          <ul><li>Ton adapté à chaque destinataire</li><li>Explication en mots simples</li><li>Aucun envoi sans votre accord</li></ul>
-        </article>
-      </div>
-      <div class="box" style="margin-top:28px;border:1px solid var(--teal);border-radius:16px;padding:28px;background:rgba(25,240,212,.05);box-shadow:0 0 40px rgba(25,240,212,.12)">
-        <span class="kicker mono" style="color:var(--teal)">Aperçu d'un livrable · cas réel, anonymisé</span>
-        <h3>Contrôle des charges, extrait</h3>
-        <ul style="list-style:none;padding:0;margin:10px 0 0;color:var(--muted)">
-          <li style="padding:10px 0;border-top:1px solid var(--line)"><b style="color:var(--gold)">À réclamer</b> · Compte créditeur de près de 300 € : trois prélèvements trimestriels dépassaient le dû, une fois les frais de recouvrement annulés. Remboursé trois jours après la réclamation.</li>
-          <li style="padding:10px 0;border-top:1px solid var(--line)"><b style="color:var(--gold)">À questionner</b> · Procès-verbal d'assemblée générale : le montant du budget voté est resté vide (« à la somme de (montant) euros »), de même que les honoraires du syndic. Demander les montants votés.</li>
-          <li style="padding:10px 0;border-top:1px solid var(--line)"><b style="color:var(--gold)">À réclamer</b> · 0,93 € d'intérêts de retard non recrédités après annulation.</li>
-          <li style="padding:10px 0;border-top:1px solid var(--line)"><b style="color:var(--teal)">Conforme</b> · Régularisation annuelle de 23,56 € : elle couvre bien les deux lots.</li>
-        </ul>
-        <p class="note">Cas réel tiré des propres charges du fondateur, noms et références retirés. Un bon contrôle dit aussi ce qui est correct.</p>
-      </div>
-      <p class="note">Kerato est conçu par un copropriétaire qui contrôle lui-même ses charges chaque mois.</p>
-    </div>
-  </section>
-
-  <section id="methode">
-    <div class="wrap">
-      <span class="kicker mono">Parcours</span>
-      <h2>Une méthode légère, entièrement à distance</h2>
-      <p class="lead">Pas de déplacement, rien à installer, peu de réunions. Vous envoyez vos documents par e-mail ou dossier partagé, et vous gardez la main sur chaque étape par écrit.</p>
-      <ol class="steps">
-        <li><span class="n">01</span><b>Diagnostic</b><span class="t">Vous remplissez le questionnaire. Nous vous renvoyons un rapport d'une page.</span></li>
-        <li><span class="n">02</span><b>Cadrage</b><span class="t">Le périmètre, le prix et le délai sont écrits et validés par vous.</span></li>
-        <li><span class="n">03</span><b>Livraison en 7 jours ouvrés</b><span class="t">Vous envoyez vos documents, nous les traitons et vous renvoyons synthèses et brouillons relus avant remise.</span></li>
-        <li><span class="n">04</span><b>Suivi</b><span class="t">Un compte rendu écrit, des retouches, et les évolutions si vous le souhaitez.</span></li>
-      </ol>
-    </div>
-  </section>
-  <section id="cas">
-    <div class="wrap">
-      <span class="kicker mono">Choisissez votre terrain</span>
-      <h2>Deux terrains de jeu</h2>
-      <div class="tabs" role="tablist" aria-label="Cas d'usage">
-        <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">Syndics et gestionnaires</button>
-        <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false">Organismes de formation</button>
-      </div>
-      <div class="pane" id="p1" role="tabpanel" aria-labelledby="t1">
-        <p>Les mêmes demandes reviennent chaque semaine : une question sur un appel de fonds, un relevé à comprendre, une pièce à retrouver. Nous lisons, classons et préparons la réponse. Vous relisez et envoyez.</p>
-        <ul>
-          <li>Tri et résumé des messages entrants</li>
-          <li>Détection des anomalies dans les relevés de charges</li>
-          <li>Brouillons de réponse aux copropriétaires</li>
-        </ul>
-      </div>
-      <div class="pane" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
-        <p>Entre les convocations, les émargements et les comptes rendus, l'administratif prend plus de temps que la formation. Nous préparons les documents et les relances. Vous validez.</p>
-        <ul>
-          <li>Comptes rendus de séance rédigés à partir de vos notes</li>
-          <li>Relances et suivi des documents manquants</li>
-          <li>Préparation des pièces de facturation</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  <section id="courrier-clair">
-    <div class="wrap">
-      <div class="cc">
-        <div>
-          <span class="kicker mono" style="color:var(--gold)">Mode histoire</span>
-          <h2>Courrier Clair, une création Kerato</h2>
-          <p>Un relevé de charges, un courrier de la caisse, une lettre du syndic : beaucoup de personnes âgées ne savent pas ce qu'on leur demande. Courrier Clair explique chaque papier en mots simples et dit quoi faire ensuite.</p>
-          <p>Pour les syndics, une version sera proposée pour que les courriers adressés aux copropriétaires âgés soient compris dès la première lecture.</p>
-        </div>
-        <div>
-          <a class="btn" href="https://courrier-clair.pages.dev">Découvrir Courrier Clair</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="diagnostic">
-    <div class="wrap">
-      <div class="box">
-        <span class="kicker mono" style="color:var(--teal)">Niveau 1 · gratuit</span>
-        <h2>Le diagnostic gratuit</h2>
-        <p class="lead">Dix questions, cinq minutes. Vous décrivez vos tâches répétitives et les outils que vous utilisez. Vous recevez en retour un rapport d'une page avec les trois tâches que nous pourrions traiter pour vous et qui vous feraient gagner le plus de temps.</p>
-        <a class="btn" href="https://tally.so/r/X5opBz">Commencer le diagnostic</a>
-        <p class="note">Vos réponses ne servent qu'à établir le rapport et ne sont pas transmises à des tiers.</p>
-      </div>
-    </div>
-  </section>
-  <section id="questions">
-    <div class="wrap">
-      <span class="kicker mono">Aide</span>
-      <h2>Questions fréquentes</h2>
-      <dl>
-        <dt>Dois-je installer quelque chose ou vous donner accès à mon ordinateur ?</dt>
-        <dd>Non. Vous nous envoyez les documents concernés, par e-mail ou dossier partagé. Nous vous renvoyons le résultat de la même manière. Tout se passe à distance, par écrit, avec une visioconférence seulement si vous la demandez.</dd>
-        <dt>Le travail est-il fait par une IA ?</dt>
-        <dd>Oui, avec l'aide d'une IA, et jamais sans relecture. Chaque livrable est relu avant de vous être remis, et vous validez le résultat final.</dd>
-        <dt>Que devient mon prix si le projet grossit ?</dt>
-        <dd>Le prix est fixé avec le périmètre. Si vous ajoutez une tâche, un nouveau forfait est proposé avant tout travail supplémentaire.</dd>
-        <dt>Où vont mes données ?</dt>
-        <dd>Kerato ne traite que les documents que vous envoyez. Un accord de traitement des données est signé avant le début, et vos documents sont supprimés à la fin de la mission si vous le demandez.</dd>
-        <dt>Qui valide ce qui est produit ?</dt>
-        <dd>Vous. Kerato prépare, vous validez avant tout envoi à vos propres clients ou copropriétaires.</dd>
-        <dt>Pourquoi un prix aussi clair ?</dt>
-        <dd>Parce qu'une tâche simple n'a pas besoin d'un devis de plusieurs semaines. Vous savez ce que vous payez, et ce que vous recevez.</dd>
-      </dl>
-    </div>
-  </section>
+<div class="wrap hero">
+<div>
+<span class="eyebrow mono">Agence IA · immobilier &amp; copropriété</span>
+<h1>Envoyez vos documents. <em>Recevez le travail fait.</em></h1>
+<p class="lead">Kerato traite à votre place les tâches répétitives de l'immobilier et de la copropriété. Vous nous transmettez vos documents, nous vous renvoyons des synthèses et des brouillons prêts à valider. Rien à installer, aucun accès à votre ordinateur.</p>
+<a class="btn" href="https://tally.so/r/X5opBz">Lancer mon diagnostic gratuit</a>
+<a class="btn ghost" href="#offres">Voir les niveaux</a>
+<p class="note">Aucun engagement. Le diagnostic vous est remis même si nous ne travaillons pas ensemble.</p>
+</div>
+<aside class="board" aria-label="Exemples de missions">
+<h3 class="mono">Mission en cours</h3>
+<ul class="obj" id="obj">
+<li tabindex="0" role="button" aria-pressed="false"><span class="chk">✓</span><div><b>Trier le courrier entrant</b><span>Chaque message est classé, résumé et rattaché à son dossier.</span></div></li>
+<li tabindex="0" role="button" aria-pressed="false"><span class="chk">✓</span><div><b>Lire les relevés de charges</b><span>Les lignes inhabituelles sont repérées et listées.</span></div></li>
+<li tabindex="0" role="button" aria-pressed="false"><span class="chk">✓</span><div><b>Préparer les réponses types</b><span>Un brouillon est prêt pour chaque demande, vous validez.</span></div></li>
+</ul>
+<div class="reward" id="reward">Cochez les objectifs : chacun vous fait gagner du temps</div>
+</aside>
+</div>
+<section id="offres">
+<div class="wrap">
+<span class="kicker mono">Sélection du niveau</span>
+<h2>Quatre niveaux, <em>un périmètre écrit</em> avant de commencer</h2>
+<p class="lead">Vous connaissez le prix et ce qui est livré avant de dire oui. Les tarifs s'entendent hors taxes.</p>
+<div class="grid">
+<article class="card">
+<span class="lv">NIV. 1</span>
+<h3>Diagnostic</h3>
+<div class="price">Gratuit</div>
+<p>Dix questions en ligne sur vos tâches, vos outils et vos volumes.</p>
+<ul><li>Rapport d'une page</li><li>Les trois tâches à déléguer en priorité</li><li>Réponse sous 48 heures ouvrées</li></ul>
+</article>
+<article class="card main">
+<span class="lv">NIV. 2 · LE PLUS JOUÉ</span>
+<h3>Une mission au choix</h3>
+<div class="price">dès 690 € <small>HT, forfait</small></div>
+<p>Une mission nommée, traitée de bout en bout : vous envoyez, nous renvoyons.</p>
+<ul><li>Livrable remis sous 7 jours ouvrés</li><li>Une série de retouches comprise</li><li>Modèle de livrable réutilisable</li></ul>
+</article>
+<article class="card">
+<span class="lv">NIV. 3 · IMMOBILIER</span>
+<h3>Pack syndic et copropriété</h3>
+<div class="price">dès 1 490 € <small>HT, forfait</small></div>
+<p>Trois traitements liés, livrés ensemble.</p>
+<ul><li>Tri des messages entrants</li><li>Lecture des relevés de charges</li><li>Réponses aux copropriétaires</li></ul>
+</article>
+<article class="card">
+<span class="lv">BONUS</span>
+<h3>Suivi mensuel</h3>
+<div class="price">190 € <small>HT par mois</small></div>
+<p>Vos envois réguliers continuent d'être traités chaque mois, dans le volume convenu.</p>
+<ul><li>Traitement de vos envois du mois</li><li>Compte rendu écrit chaque mois</li><li>Sans durée minimale</li></ul>
+</article>
+</div>
+<p class="note">Au-delà du volume convenu, la consommation d'IA est refacturée au coût réel, sans marge.</p>
+</div>
+</section>
+<section id="missions" class="light">
+<div class="wrap">
+<span class="kicker mono">Les missions</span>
+<h2>Trois missions, <em>un résultat</em> que vous pouvez lire</h2>
+<p class="lead">Chaque mission a un nom, un livrable précis et un avant/après. Vous envoyez vos documents, vous recevez un résultat prêt à utiliser.</p>
+<div class="grid">
+<article class="card">
+<span class="lv">MISSION A</span>
+<h3>Le Contrôle des charges</h3>
+<p><b>Avant :</b> un relevé de 20 pages que personne ne lit en détail.<br><b>Après :</b> la liste des lignes à questionner, avec les montants et la question à poser au syndic.</p>
+<ul><li>Écarts avec le budget voté</li><li>Honoraires hors forfait repérés</li><li>Brouillon de courrier au syndic</li></ul>
+</article>
+<article class="card">
+<span class="lv">MISSION B</span>
+<h3>Le Tri du lundi</h3>
+<p><b>Avant :</b> cinquante messages en retard, dont trois urgents noyés dedans.<br><b>Après :</b> un récapitulatif classé par urgence, avec l'action à faire pour chacun.</p>
+<ul><li>Messages résumés en une ligne</li><li>Urgences en tête de liste</li><li>Rattachement au bon dossier</li></ul>
+</article>
+<article class="card">
+<span class="lv">MISSION C</span>
+<h3>Les Réponses prêtes</h3>
+<p><b>Avant :</b> la même question d'un copropriétaire, réécrite pour la dixième fois.<br><b>Après :</b> un brouillon clair et poli pour chaque demande. Vous relisez et envoyez.</p>
+<ul><li>Ton adapté à chaque destinataire</li><li>Explication en mots simples</li><li>Aucun envoi sans votre accord</li></ul>
+</article>
+</div>
+<div class="proof">
+<span class="kicker mono">Aperçu d'un livrable · cas réel, anonymisé</span>
+<h3>Contrôle des charges, extrait</h3>
+<ul>
+<li><b>À réclamer</b> · Compte créditeur de près de 300 € : trois prélèvements trimestriels dépassaient le dû, une fois les frais de recouvrement annulés. Remboursé trois jours après la réclamation.</li>
+<li><b>À questionner</b> · Procès-verbal d'assemblée générale : le montant du budget voté est resté vide (« à la somme de (montant) euros »), de même que les honoraires du syndic. Demander les montants votés.</li>
+<li><b>À réclamer</b> · 0,93 € d'intérêts de retard non recrédités après annulation.</li>
+<li><b class="ok">Conforme</b> · Régularisation annuelle de 23,56 € : elle couvre bien les deux lots.</li>
+</ul>
+<p class="note">Cas réel tiré des propres charges du fondateur, noms et références retirés. Un bon contrôle dit aussi ce qui est correct.</p>
+</div>
+<p class="note">Kerato est conçu par un copropriétaire qui contrôle lui-même ses charges chaque mois.</p>
+</div>
+</section>
+<section id="methode">
+<div class="wrap">
+<span class="kicker mono">Parcours</span>
+<h2>Une méthode légère, <em>entièrement à distance</em></h2>
+<p class="lead">Pas de déplacement, rien à installer, peu de réunions. Vous envoyez vos documents par e-mail ou dossier partagé, et vous gardez la main sur chaque étape par écrit.</p>
+<ol class="steps">
+<li><span class="n">01</span><b>Diagnostic</b><span class="t">Vous remplissez le questionnaire. Nous vous renvoyons un rapport d'une page.</span></li>
+<li><span class="n">02</span><b>Cadrage</b><span class="t">Le périmètre, le prix et le délai sont écrits et validés par vous.</span></li>
+<li><span class="n">03</span><b>Livraison en 7 jours ouvrés</b><span class="t">Vous envoyez vos documents, nous les traitons et vous renvoyons synthèses et brouillons relus avant remise.</span></li>
+<li><span class="n">04</span><b>Suivi</b><span class="t">Un compte rendu écrit, des retouches, et les évolutions si vous le souhaitez.</span></li>
+</ol>
+</div>
+</section>
+<section id="cas">
+<div class="wrap">
+<span class="kicker mono">Choisissez votre terrain</span>
+<h2>Deux terrains, <em>un même soin</em></h2>
+<div class="tabs" role="tablist" aria-label="Cas d'usage">
+<button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">Syndics et gestionnaires</button>
+<button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false">Organismes de formation</button>
+</div>
+<div class="pane" id="p1" role="tabpanel" aria-labelledby="t1">
+<p>Les mêmes demandes reviennent chaque semaine : une question sur un appel de fonds, un relevé à comprendre, une pièce à retrouver. Nous lisons, classons et préparons la réponse. Vous relisez et envoyez.</p>
+<ul>
+<li>Tri et résumé des messages entrants</li>
+<li>Détection des anomalies dans les relevés de charges</li>
+<li>Brouillons de réponse aux copropriétaires</li>
+</ul>
+</div>
+<div class="pane" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+<p>Entre les convocations, les émargements et les comptes rendus, l'administratif prend plus de temps que la formation. Nous préparons les documents et les relances. Vous validez.</p>
+<ul>
+<li>Comptes rendus de séance rédigés à partir de vos notes</li>
+<li>Relances et suivi des documents manquants</li>
+<li>Préparation des pièces de facturation</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="courrier-clair">
+<div class="wrap">
+<div class="cc">
+<div>
+<span class="kicker mono">Mode histoire</span>
+<h2>Courrier Clair, <em>une création Kerato</em></h2>
+<p>Un relevé de charges, un courrier de la caisse, une lettre du syndic : beaucoup de personnes âgées ne savent pas ce qu'on leur demande. Courrier Clair explique chaque papier en mots simples et dit quoi faire ensuite.</p>
+<p>Pour les syndics, une version sera proposée pour que les courriers adressés aux copropriétaires âgés soient compris dès la première lecture.</p>
+</div>
+<div>
+<a class="btn" href="https://courrier-clair.pages.dev">Découvrir Courrier Clair</a>
+</div>
+</div>
+</div>
+</section>
+<section id="diagnostic">
+<div class="wrap">
+<div class="box">
+<span class="kicker mono">Niveau 1 · gratuit</span>
+<h2>Le diagnostic gratuit</h2>
+<p class="lead">Dix questions, cinq minutes. Vous décrivez vos tâches répétitives et les outils que vous utilisez. Vous recevez en retour un rapport d'une page avec les trois tâches que nous pourrions traiter pour vous et qui vous feraient gagner le plus de temps.</p>
+<a class="btn" href="https://tally.so/r/X5opBz">Commencer le diagnostic</a>
+<p class="note">Vos réponses ne servent qu'à établir le rapport et ne sont pas transmises à des tiers.</p>
+</div>
+</div>
+</section>
+<section id="questions" class="light">
+<div class="wrap">
+<span class="kicker mono">Aide</span>
+<h2>Questions <em>fréquentes</em></h2>
+<dl>
+<dt>Dois-je installer quelque chose ou vous donner accès à mon ordinateur ?</dt>
+<dd>Non. Vous nous envoyez les documents concernés, par e-mail ou dossier partagé. Nous vous renvoyons le résultat de la même manière. Tout se passe à distance, par écrit, avec une visioconférence seulement si vous la demandez.</dd>
+<dt>Le travail est-il fait par une IA ?</dt>
+<dd>Oui, avec l'aide d'une IA, et jamais sans relecture. Chaque livrable est relu avant de vous être remis, et vous validez le résultat final.</dd>
+<dt>Que devient mon prix si le projet grossit ?</dt>
+<dd>Le prix est fixé avec le périmètre. Si vous ajoutez une tâche, un nouveau forfait est proposé avant tout travail supplémentaire.</dd>
+<dt>Où vont mes données ?</dt>
+<dd>Kerato ne traite que les documents que vous envoyez. Un accord de traitement des données est signé avant le début, et vos documents sont supprimés à la fin de la mission si vous le demandez.</dd>
+<dt>Qui valide ce qui est produit ?</dt>
+<dd>Vous. Kerato prépare, vous validez avant tout envoi à vos propres clients ou copropriétaires.</dd>
+<dt>Pourquoi un prix aussi clair ?</dt>
+<dd>Parce qu'une tâche simple n'a pas besoin d'un devis de plusieurs semaines. Vous savez ce que vous payez, et ce que vous recevez.</dd>
+</dl>
+</div>
+</section>
 </main>
 <footer>
-  <div class="wrap foot">
-    <div><strong>Kerato</strong>, une marque de Lacharme Capital (SASU), Paris.</div>
-    <div>Mentions légales à venir. Conditions générales remises avec chaque devis.</div>
-  </div>
+<div class="wrap">
+<div class="fcols">
+<div>
+<div class="fbrand">Kerato<span>.</span></div>
+<p>Agence IA pour l'immobilier et la copropriété. Vous envoyez vos documents, nous renvoyons des synthèses et des brouillons à valider.</p>
+</div>
+<div>
+<h4>Explorer</h4>
+<a href="#offres">Niveaux et tarifs</a>
+<a href="#missions">Missions</a>
+<a href="#methode">Méthode</a>
+<a href="#questions">Questions</a>
+</div>
+<div>
+<h4>Informations</h4>
+<a href="https://tally.so/r/X5opBz">Diagnostic gratuit</a>
+<a href="https://courrier-clair.pages.dev">Courrier Clair</a>
+<span>Mentions légales à venir</span>
+</div>
+</div>
+<div class="fbase">
+<span>© Kerato, une marque de Lacharme Capital (SASU), Paris.</span>
+<span>Conditions générales remises avec chaque devis.</span>
+</div>
+</div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 (function(){
-  var fill=document.getElementById('fill'),lvl=document.getElementById('lvl'),xpn=document.getElementById('xpn'),toast=document.getElementById('toast');
-  var names=['NIV. 1','NIV. 2','NIV. 3','NIV. 4'],last=0,tt;
-  function say(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2200)}
-  function onScroll(){
-    var h=document.documentElement,max=h.scrollHeight-h.clientHeight,p=max>0?Math.min(1,h.scrollTop/max):0;
-    fill.style.width=(p*100)+'%';
-    xpn.textContent=Math.round(p*1000)+' XP';
-    var l=p<.25?0:p<.5?1:p<.8?2:3;
-    lvl.textContent=names[l];
-    if(l>last){say('Niveau '+(l+1)+' atteint');}
-    last=l;
-  }
-  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-  var items=document.querySelectorAll('#obj li'),reward=document.getElementById('reward');
-  var texts=['Cochez les objectifs : chacun vous fait gagner du temps','1 tâche sur 3 déléguée','2 tâches sur 3 déléguées','Mission accomplie : le travail est fait, vous validez'];
-  function toggle(li){
-    li.classList.toggle('done');
-    li.setAttribute('aria-pressed',li.classList.contains('done'));
-    var n=document.querySelectorAll('#obj li.done').length;
-    reward.textContent=texts[n];
-    if(n===3)say('Mission accomplie');
-  }
-  items.forEach(function(li){
-    li.addEventListener('click',function(){toggle(li)});
-    li.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(li)}});
-  });
-  var tabs=document.querySelectorAll('.tab');
-  tabs.forEach(function(t){t.addEventListener('click',function(){
-    tabs.forEach(function(o){var on=o===t;o.setAttribute('aria-selected',on);document.getElementById(o.getAttribute('aria-controls')).hidden=!on});
-  })});
+var fill=document.getElementById('fill'),lvl=document.getElementById('lvl'),xpn=document.getElementById('xpn'),toast=document.getElementById('toast');
+var names=['NIV. 1','NIV. 2','NIV. 3','NIV. 4'],last=0,tt;
+function say(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2200)}
+function onScroll(){
+var h=document.documentElement,max=h.scrollHeight-h.clientHeight,p=max>0?Math.min(1,h.scrollTop/max):0;
+fill.style.width=(p*100)+'%';
+xpn.textContent=Math.round(p*1000)+' XP';
+var l=p<.25?0:p<.5?1:p<.8?2:3;
+lvl.textContent=names[l];
+if(l>last){say('Niveau '+(l+1)+' atteint');}
+last=l;
+}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+var items=document.querySelectorAll('#obj li'),reward=document.getElementById('reward');
+var texts=['Cochez les objectifs : chacun vous fait gagner du temps','1 tâche sur 3 déléguée','2 tâches sur 3 déléguées','Mission accomplie : le travail est fait, vous validez'];
+function toggle(li){
+li.classList.toggle('done');
+li.setAttribute('aria-pressed',li.classList.contains('done'));
+var n=document.querySelectorAll('#obj li.done').length;
+reward.textContent=texts[n];
+if(n===3)say('Mission accomplie');
+}
+items.forEach(function(li){
+li.addEventListener('click',function(){toggle(li)});
+li.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(li)}});
+});
+var tabs=document.querySelectorAll('.tab');
+tabs.forEach(function(t){t.addEventListener('click',function(){
+tabs.forEach(function(o){var on=o===t;o.setAttribute('aria-selected',on);document.getElementById(o.getAttribute('aria-controls')).hidden=!on});
+})});
 })();
 </script>
 </body>
